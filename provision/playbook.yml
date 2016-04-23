@@ -1,0 +1,10 @@
+---
+# Esto aprovisiona la máquina local de desarrollo
+
+- hosts: all
+  become: yes
+  roles:
+    - role: python3
+  tasks:
+    - name: Install project dependencies
+      pip: requirements=/vagrant/requirements.txt executable=pip3
