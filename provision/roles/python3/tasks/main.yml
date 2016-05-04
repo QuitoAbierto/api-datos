@@ -1,6 +1,8 @@
 ---
 # This role installs python and pip
 
+- name: Updat apt index
+  apt: update_cache=yes
 - name: Install python3
   apt: name=python3 state=present
 - name: Install python pip
