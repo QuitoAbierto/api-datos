@@ -1,6 +1,12 @@
 web:
   build: .
   ports:
-   - "5000:5000"
+    - "5000:5000"
   volumes:
-   - .:/code
+    - .:/code
+  links:
+    - db
+db:
+  image: couchdb
+  ports:
+    - "5984:5984"
