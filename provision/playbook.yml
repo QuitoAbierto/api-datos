@@ -8,3 +8,5 @@
   tasks:
     - name: Install project dependencies
       pip: requirements=/vagrant/requirements.txt executable=pip3
+    - name: Install couchdb
+      apt: name=couchdb state=present

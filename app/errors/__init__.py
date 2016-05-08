@@ -1,0 +1,3 @@
+
+class InvalidDocumentError(Exception):
+    pass
