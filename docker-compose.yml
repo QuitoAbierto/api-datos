@@ -6,7 +6,10 @@ web:
     - .:/code
   links:
     - db
+
 db:
   image: couchdb
+  volumes:
+    - /var/db/:/usr/local/var/lib/couchdb
   ports:
     - "5984:5984"

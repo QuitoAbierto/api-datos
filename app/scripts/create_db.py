@@ -1,7 +1,7 @@
 import couchdb
 
 def run():
-    couch = couchdb.Server()
+    couch = couchdb.Server('http://db:5984')
 
     try:
         print('Deleting database first...')
