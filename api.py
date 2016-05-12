@@ -2,10 +2,11 @@ from flask import Flask, request
 import json
 from app.scripts import create_db
 from app.repository import Repository
-
+from flask.ext.cors import CORS
 
 app = Flask(__name__)
-db = create_db.run()
+CORS(app)
+db = None
 
 @app.route('/api/recurso', methods=['POST'])
 def ejemplo_post():
