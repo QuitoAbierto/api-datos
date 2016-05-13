@@ -6,7 +6,7 @@ from flask.ext.cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-db = None
+db = create_db.run()
 
 @app.route('/api/recurso', methods=['POST'])
 def ejemplo_post():
