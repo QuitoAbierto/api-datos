@@ -1,0 +1,71 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.4.0)
+    builder (3.2.2)
+    capybara (2.6.2)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    capybara_minitest_spec (1.0.5)
+      capybara (>= 2)
+      minitest (>= 4)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
+    colorize (0.7.7)
+    cucumber (2.3.3)
+      builder (>= 2.1.2)
+      cucumber-core (~> 1.4.0)
+      cucumber-wire (~> 0.0.1)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 3.2.0)
+      multi_json (>= 1.7.5, < 2.0)
+      multi_test (>= 0.1.2)
+    cucumber-core (1.4.0)
+      gherkin (~> 3.2.0)
+    cucumber-wire (0.0.1)
+    diff-lcs (1.2.5)
+    ffi (1.9.10)
+    gherkin (3.2.0)
+    gherkin-ruby (0.3.2)
+    json (1.8.3)
+    mime-types (3.0)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0221)
+    mini_portile2 (2.0.0)
+    minitest (5.8.4)
+    multi_json (1.11.3)
+    multi_test (0.1.2)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
+    rack (1.6.4)
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rubyzip (1.2.0)
+    selenium-webdriver (2.53.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
+    spinach (0.8.10)
+      colorize
+      gherkin-ruby (>= 0.3.2)
+      json
+    websocket (1.2.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  capybara
+  capybara_minitest_spec
+  cucumber
+  selenium-webdriver
+  spinach
+
+BUNDLED WITH
+   1.11.2

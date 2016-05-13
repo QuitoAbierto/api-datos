@@ -1,4 +1,11 @@
 web:
+  build: static
+  links:
+    - api
+  ports:
+    - "80:80"
+
+api:
   build: .
   ports:
     - "5000:5000"
