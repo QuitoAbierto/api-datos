@@ -5,6 +5,7 @@ $(function () {
   var messageBox = $('#message-box');
   var nameField = $('#name-field');
   var descriptionField = $('#description-field');
+  var alert = '<div class="alert alert-success alert-dismissible fade in" role="alert">\n                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                   <span aria-hidden="true">×</span>\n                 </button>\n                 Guardado exitosamente\n               </div>';
   submitButton.on('click', function () {
     var data = {
       name: nameField.val(),
@@ -18,7 +19,7 @@ $(function () {
       success: function success() {
         nameField.val('');
         descriptionField.val('');
-        messageBox.text('Guardado exitosamente');
+        messageBox.html(alert);
       },
       error: function error() {
         console.log('ERROR');
