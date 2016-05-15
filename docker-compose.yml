@@ -1,22 +1,24 @@
-web:
-  build: static
-  links:
-    - api
-  ports:
-    - "80:80"
+version: '2'
+services:
+  web:
+    build: static
+    links:
+      - api
+    ports:
+      - "80:80"
 
-api:
-  build: .
-  ports:
-    - "5000:5000"
-  volumes:
-    - .:/code
-  links:
-    - db
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    links:
+      - db
 
-db:
-  image: couchdb
-  volumes:
-    - /var/db/:/usr/local/var/lib/couchdb
-  ports:
-    - "5984:5984"
+  db:
+    image: couchdb
+    volumes:
+      - /var/db/:/usr/local/var/lib/couchdb
+    ports:
+      - "5984:5984"

@@ -1,0 +1,7 @@
+FROM ruby
+WORKDIR /test
+COPY Gemfile /test/
+COPY Gemfile.lock /test/
+RUN bundle install
+CMD bundle exec cucumber
+ADD . /test
