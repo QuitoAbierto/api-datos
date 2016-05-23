@@ -5,5 +5,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'cucumber'
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'capybara_minitest_spec'
+  gem 'poltergeist'
 end
