@@ -12,7 +12,7 @@ $(function () {
       description: descriptionField.val()
     };
     $.ajax({
-      url: 'http://192.168.99.100:5000/api/recurso',
+      url: 'http://localhost:5000/api/recurso',
       method: 'POST',
       data: JSON.stringify(data),
       contentType: "application/json",

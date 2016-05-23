@@ -3,7 +3,14 @@ sudo: required
 services:
   - docker
 
+env:
+  COMPOSE_VERSION: 1.7.1
+
+before_install:
+ - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+ - chmod +x docker-compose
+ - sudo mv docker-compose /usr/local/bin
+
 script:
-  - docler-compose --version
-  - docler-compose -f docker-compose.ymo -f docler-compose.test.yml build
+  - docker-compose -f docker-compose.yml -f docler-compose.test.yml build
   - docker-compose -f docker-compose.yml -f docker-compose.test.yml run test
