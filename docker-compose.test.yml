@@ -6,3 +6,6 @@ services:
       dockerfile: Dockerfile-test
     links:
       - web
+      - api
+    volumes:
+      - ./tmp/screenshot:/tmp/screenshot

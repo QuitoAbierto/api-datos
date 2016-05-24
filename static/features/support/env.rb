@@ -15,3 +15,5 @@ Capybara.configure do |config|
   config.javascript_driver = :poltergeist
   config.app_host = ENV['APP_HOST'] || 'http://web'
 end
+
+Capybara.save_and_open_page_path = "/tmp/screenshot"
