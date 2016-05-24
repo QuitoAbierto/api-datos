@@ -6,6 +6,5 @@ Esta API es la interfaz principal para la carga y el consumo de datos.
 
 ## Requerimientos
 
-- VirtualBox
-- Vagrant
-- Ansible
+- Docker
+- docker-compose
