@@ -3,7 +3,7 @@ $( () => {
   let messageBox = $('#message-box')
   let nameField = $('#name-field')
   let descriptionField = $('#description-field')
-  let alert = `<div class="alert alert-success alert-dismissible fade in" role="alert">
+  let successAlert = `<div class="alert alert-success alert-dismissible fade in" role="alert">
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true">×</span>
                  </button>
@@ -15,14 +15,14 @@ $( () => {
       description: descriptionField.val()
     }
     $.ajax({
-      url: 'http://localhost:5000/api/recurso',
+      url: 'http://api:5000/api/recurso',
       method: 'POST',
       data: JSON.stringify(data),
       contentType: "application/json",
       success: () => {
         nameField.val('')
         descriptionField.val('')
-        messageBox.html(alert)
+        messageBox.html(successAlert)
       },
       error: () => {
         console.log('ERROR')

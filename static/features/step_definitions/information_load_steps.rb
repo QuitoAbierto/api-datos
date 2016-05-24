@@ -1,3 +1,4 @@
+require_relative '../helpers/wait'
 
 Dado(/^que ingreso a la aplicación$/) do
   page.visit '/'
@@ -17,10 +18,11 @@ Cuando(/^lleno el formulario con los siguientes datos:$/) do |table|
 end
 
 Cuando(/^envío el formulario$/) do
-  page.find('#submit').click
+  page.click_link('submit')
 end
 
 Entonces(/^veo un mensaje de confirmación$/) do
+  wait_for_ajax
   message_box = page.find '#message-box'
   assert message_box.has_content?('Guardado exitosamente'), 'Message not shown!'
 end
