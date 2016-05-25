@@ -47,8 +47,7 @@
 	'use strict';
 
 	$(function () {
-	  var Config = __webpack_require__(1);
-	  console.log('HOLA:' + Config.api.host);
+	  var config = __webpack_require__(1);
 	  var submitButton = $('#submit');
 	  var messageBox = $('#message-box');
 	  var nameField = $('#name-field');
@@ -60,7 +59,7 @@
 	      description: descriptionField.val()
 	    };
 	    $.ajax({
-	      url: 'http://api:5000/api/recurso',
+	      url: 'http://' + config.api.host + 'api/recurso',
 	      method: 'POST',
 	      data: JSON.stringify(data),
 	      contentType: "application/json",

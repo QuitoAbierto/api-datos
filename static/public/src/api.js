@@ -1,6 +1,5 @@
 $( () => {
-  const Config = require('./config.js')
-  console.log('HOLA:' + Config.api.host)
+  const config = require('./config.js')
   let submitButton = $('#submit')
   let messageBox = $('#message-box')
   let nameField = $('#name-field')
@@ -17,7 +16,7 @@ $( () => {
       description: descriptionField.val()
     }
     $.ajax({
-      url: 'http://api:5000/api/recurso',
+      url: `http://${config.api.host}api/recurso`,
       method: 'POST',
       data: JSON.stringify(data),
       contentType: "application/json",
@@ -27,7 +26,7 @@ $( () => {
         messageBox.html(successAlert)
       },
       error: () => {
-        console.log('ERROR')
+        console.log('Error accessing the API')
       }
     })
   })
