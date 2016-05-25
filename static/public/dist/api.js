@@ -1,11 +1,13 @@
 'use strict';
 
 $(function () {
+  var Config = require('./config.js');
+  console.log('HOLA:' + Config.api.host);
   var submitButton = $('#submit');
   var messageBox = $('#message-box');
   var nameField = $('#name-field');
   var descriptionField = $('#description-field');
-  var successAlert = '<div class="alert alert-success alert-dismissible fade in" role="alert">\n                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                   <span aria-hidden="true">×</span>\n                 </button>\n                 Guardado exitosamente\n               </div>';
+  var successAlert = '<div class="alert alert-success alert-dismissible fade in" role="alert">\n    <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n      <span aria-hidden="true">×</span>\n    </button>\n    Guardado exitosamente\n  </div>';
   submitButton.on('click', function () {
     var data = {
       name: nameField.val(),

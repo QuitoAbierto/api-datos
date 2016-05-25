@@ -2,7 +2,6 @@
   "name": "carga-web-quito-abirto",
   "version": "1.0.0",
   "description": "Aplicacion web para la carga de datos",
-  "main": "index.js",
   "license": "GPL-3.0",
   "devDependencies": {
     "babel-cli": "^6.7.7",
@@ -13,9 +12,11 @@
     "gulp-babel": "^6.1.2",
     "gulp-cli": "^1.2.1",
     "gulp-shell": "^0.5.2",
-    "gulp-watch": "^4.3.5"
-  },
-  "dependencies": {
-    "express": "^4.13.4"
+    "gulp-watch": "^4.3.5",
+    "webpack": "~1.13.1",
+    "gulp-clean": "~0.3.2",
+    "gulp-rename": "~1.2.2",
+    "gulp-webpack": "~1.5.0",
+    "gulp-sequence": "~0.4.5"
   }
 }
