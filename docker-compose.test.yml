@@ -9,3 +9,6 @@ services:
       - api
     volumes:
       - ./tmp/screenshot:/tmp/screenshot
+    depends_on:
+      - web
+      - api
