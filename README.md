@@ -8,3 +8,7 @@ Esta API es la interfaz principal para la carga y el consumo de datos.
 
 - Docker
 - docker-compose
+
+Agregar la siguiente linea al archivo /etc/hosts
+
+`127.0.0.1               api`
