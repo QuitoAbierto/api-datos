@@ -59,7 +59,7 @@
 	      description: descriptionField.val()
 	    };
 	    $.ajax({
-	      url: 'http://' + config.api.host + 'api/recurso',
+	      url: config.api.host + 'api/recurso',
 	      method: 'POST',
 	      data: JSON.stringify(data),
 	      contentType: "application/json",
@@ -69,7 +69,7 @@
 	        messageBox.html(successAlert);
 	      },
 	      error: function error() {
-	        console.log('ERROR');
+	        console.log('Error accessing the API');
 	      }
 	    });
 	  });
