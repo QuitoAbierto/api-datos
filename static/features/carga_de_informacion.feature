@@ -13,4 +13,10 @@ Característica: Cargar información
       | nombre             | descripción                       |
       | Parada la carolina | Esta es una parada de la linea #5 |
     Cuando envío el formulario
-    Entonces veo un mensaje de confirmación
+    Entonces veo el mensaje "Guardado exitosamente"
+
+  Escenario: El usuario no provee información
+    Dado que ingreso a la aplicación
+    Cuando estoy en la página de inicio
+    Cuando envío el formulario
+    Entonces veo el mensaje "Todos los campos son obligatorios"

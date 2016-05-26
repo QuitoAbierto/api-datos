@@ -21,8 +21,8 @@ Cuando(/^envío el formulario$/) do
   page.click_link('submit')
 end
 
-Entonces(/^veo un mensaje de confirmación$/) do
+Entonces(/^veo el mensaje "([^"]*)"$/) do |message|
   wait_for_ajax
   message_box = page.find '#message-box'
-  assert message_box.has_content?('Guardado exitosamente'), 'Message not shown!'
+  assert message_box.has_content?(message), 'Message not shown!'
 end
