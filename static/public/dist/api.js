@@ -11,10 +11,11 @@ $(function () {
   submitButton.on('click', function () {
     var name = nameField.val();
     var description = descriptionField.val();
-    if (!!name && !!description) {
+    if (!!name && !!description && !!selectedLocation) {
       var data = {
         name: name,
-        description: description
+        description: description,
+        location: selectedLocation
       };
       $.ajax({
         url: config.api.host + 'api/recurso',

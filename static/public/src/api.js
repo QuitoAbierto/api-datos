@@ -19,10 +19,11 @@ $( () => {
   submitButton.on('click', () => {
     let name = nameField.val()
     let description = descriptionField.val()
-    if (!!name && !!description) {
+    if (!!name && !!description && !!selectedLocation) {
       let data = {
         name: name,
-        description: description
+        description: description,
+        location: selectedLocation
       }
       $.ajax({
         url: `${config.api.host}api/recurso`,
