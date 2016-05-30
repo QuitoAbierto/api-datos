@@ -1,19 +1,11 @@
 version: '2'
 services:
-  web:
-    build: static
-    links:
-      - api
-    ports:
-      - "80:80"
-
   api:
     build: .
     ports:
       - "5000:5000"
     links:
       - db
-
   db:
     image: couchdb
     volumes:
