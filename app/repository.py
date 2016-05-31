@@ -12,12 +12,3 @@ class Repository:
             raise InvalidDocumentError('Invalid document provided')
         self.db.save(document)
         return document
-
-    def all(self):
-        map_function = '''
-            function(doc) {
-                if(!!doc) {
-                    emit(doc._id, doc);
-                }
-            }'''
-        return self.db.query(map_function)

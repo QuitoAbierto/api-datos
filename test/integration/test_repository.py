@@ -21,12 +21,3 @@ class TestRepository:
         with assert_raises(InvalidDocumentError) as error:
             self.repo.save(document)
             assert_equal('Invalid document provided', error.msg)
-
-    def test_gets_every_document(self):
-        document1 = {'some_key': 'some_value'}
-        document2 = {'some_key': 'some_value'}
-        self.repo.save(document1)
-        self.repo.save(document2)
-
-        documents = self.repo.all()
-        assert_equal(2, len(documents))
