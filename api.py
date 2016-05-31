@@ -9,7 +9,7 @@ CORS(app)
 db = create_db.run()
 
 @app.route('/api/recurso', methods=['POST'])
-def ejemplo_post():
+def insert_one():
     repo = Repository(db)
     doc = json.loads(request.data.decode("utf-8"))
     new_doc = repo.save(doc)
