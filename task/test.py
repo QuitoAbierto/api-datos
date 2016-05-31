@@ -4,7 +4,7 @@ from task.helpers import task_message
 
 @task
 def integration():
-    task_message('Unit Tests')
+    task_message('Integration Tests')
     run('nosetests test/integration')
 
 @task
