@@ -1,7 +1,10 @@
 import couchdb
+import os
+
 
 def run():
-    couch = couchdb.Server('http://db:5984')
+    db_host = os.environ.get('DB_HOST') or 'http://db:5984'
+    couch = couchdb.Server(db_host)
 
     try:
         print('Deleting database first...')
