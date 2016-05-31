@@ -9,12 +9,18 @@ CORS(app)
 db = create_db.run()
 
 @app.route('/api/recurso', methods=['POST'])
-def ejemplo_post():
+def insert_one():
     repo = Repository(db)
     doc = json.loads(request.data.decode("utf-8"))
     new_doc = repo.save(doc)
     location = '/api/recurso/{}'.format(new_doc['_id'])
     return json.dumps(new_doc), 201, {'location': location}
+
+@app.route('/api/recurso', methods=['GET'])
+def return_all():
+    repo = Repository(db)
+    documents = [doc['value'] for doc in repo.all()]
+    return json.dumps(documents), 200
 
 if __name__ == '__main__':
     app.debug = True
