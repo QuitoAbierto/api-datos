@@ -16,6 +16,12 @@ def insert_one():
     location = '/api/parada/{}'.format(new_doc['_id'])
     return json.dumps(new_doc), 201, {'location': location}
 
+@app.route('/api/parada', methods=['GET'])
+def return_all():
+    repo = Repository(db)
+    documents = [doc['value'] for doc in repo.all()]
+    return json.dumps(documents), 200
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
