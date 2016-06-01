@@ -21,25 +21,3 @@ class TestRepository:
         with assert_raises(InvalidDocumentError) as error:
             self.repo.save(document)
             assert_equal('Invalid document provided', error.msg)
-
-    def test_adds_type_to_document(self):
-        document = {'some_key': 'some_value'}
-        new_document = self.repo.save(document)
-        assert_equal(new_document['type'], 'parada')
-
-    def test_gets_every_document(self):
-        document1 = {'some_key': 'some_value'}
-        document2 = {'some_key': 'some_value'}
-        self.repo.save(document1)
-        self.repo.save(document2)
-
-        documents = self.repo.all()
-        assert_equal(2, len(documents))
-
-    def test_gets_only_documents_of_type_parada(self):
-        self.db.save({'key': 'value1', 'type': 'cosa'})
-        self.db.save({'key': 'value2', 'type': 'cosa'})
-        self.db.save({'key': 'value3', 'type': 'parada'})
-
-        documents = self.repo.all()
-        assert_equal(1, len(documents))
