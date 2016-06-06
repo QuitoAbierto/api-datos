@@ -12,7 +12,12 @@ def functional():
     task_message('Functional Tests')
     run('nosetests test/functional')
 
-@task(default=True, pre=[integration, functional])
+@task
+def unit():
+    task_message('Unit Tests')
+    run('nosetests test/unit')
+
+@task(default=True, pre=[unit, integration, functional])
 def all():
     task_message('Running all tests')
     pass

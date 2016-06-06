@@ -1,4 +1,5 @@
 from nose.tools import *
+from unittest.mock import *
 import random
 from app.scripts import get_db
 from app.repository import Repository
@@ -10,4 +11,4 @@ def delete_db():
     db = get_db.run()
     repo = Repository(db)
     documents = repo.all()
-    [db.delete(doc['value']) for doc in documents]
+    [db.delete(doc) for doc in documents]

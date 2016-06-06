@@ -21,4 +21,4 @@ class Repository:
                     emit(doc._id, doc);
                 }
             }'''
-        return self.db.query(map_function)
+        return [stop['value'] for stop in self.db.query(map_function)]

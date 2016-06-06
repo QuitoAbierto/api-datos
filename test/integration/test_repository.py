@@ -44,3 +44,11 @@ class TestRepository:
 
         documents = self.repo.all()
         assert_equal(1, len(documents))
+
+    def test_gets_formated_stop(self):
+        value = random_alpha(10)
+        stop = {'some_key': value}
+        self.repo.save(stop)
+
+        stored_stop = self.repo.all()[0]
+        assert_equal(value, stored_stop['some_key'])
