@@ -8,6 +8,7 @@ class TestApi:
 
     def setup(self):
         self.test_app = app.test_client()
+        delete_db()
 
     def test_returns_created_resources_location(self):
         some_value = random_alpha(10)

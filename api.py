@@ -1,12 +1,12 @@
 from flask import Flask, request
 import json
-from app.scripts import create_db
+from app.scripts import get_db
 from app.repository import Repository
 from flask.ext.cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-db = create_db.run()
+db = get_db.run()
 
 @app.route('/api/parada', methods=['POST'])
 def insert_one():
