@@ -2,7 +2,7 @@ import couchdb
 from app.errors import InvalidDocumentError
 
 
-class Repository:
+class StopRepository:
 
     def __init__(self, db):
         self.db = db

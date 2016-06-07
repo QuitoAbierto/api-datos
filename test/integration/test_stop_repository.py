@@ -1,14 +1,14 @@
 from test.helpers import *
-from app.repository import Repository
+from app.stop_repository import StopRepository
 from app.errors import InvalidDocumentError
 from app.scripts import get_db
 import couchdb
 
-class TestRepository:
+class TestStopRepository:
 
     def setup(self):
         self.db = get_db.run()
-        self.repo = Repository(self.db)
+        self.repo = StopRepository(self.db)
         delete_db()
 
     def test_persist_new_document(self):

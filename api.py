@@ -1,7 +1,7 @@
 from flask import Flask, request
 import json
 from app.scripts import get_db
-from app.repository import Repository
+from app.stop_repository import StopRepository
 from app.service import StopService
 from flask.ext.cors import CORS
 
@@ -11,7 +11,7 @@ db = get_db.run()
 
 @app.route('/api/parada', methods=['POST'])
 def insert_one():
-    repo = Repository(db)
+    repo = StopRepository(db)
     doc = json.loads(request.data.decode("utf-8"))
     new_doc = repo.save(doc)
     location = '/api/parada/{}'.format(new_doc['_id'])
@@ -19,13 +19,13 @@ def insert_one():
 
 @app.route('/api/parada', methods=['GET'])
 def return_all():
-    repo = Repository(db)
+    repo = StopRepository(db)
     stops = repo.all()
     return json.dumps(stops), 200
 
 @app.route('/api/parada/cercana', methods=['POST'])
 def closest_stop():
-    repo = Repository(db)
+    repo = StopRepository(db)
     stop_service = StopService(repo)
     current_location = json.loads(request.data.decode("utf-8"))
     lat, lng = (current_location['location']['lat'],
