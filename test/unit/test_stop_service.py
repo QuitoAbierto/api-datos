@@ -1,5 +1,5 @@
 from test.helpers import *
-from app.service import StopService
+from app.stop_service import StopService
 
 
 class TestStopService:

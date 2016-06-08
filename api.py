@@ -2,7 +2,7 @@ from flask import Flask, request
 import json
 from app.scripts import get_db
 from app.stop_repository import StopRepository
-from app.service import StopService
+from app.stop_service import StopService
 from flask.ext.cors import CORS
 
 app = Flask(__name__)
