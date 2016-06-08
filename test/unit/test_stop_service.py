@@ -6,7 +6,45 @@ class TestStopService:
 
     def setup(self):
         self.repo = Mock()
+        self.repo.save.side_effect = lambda stop: stop
         self.service = StopService(self.repo)
+
+    def test_adds_type_to_document(self):
+        stop = {
+            'name': 'some_name',
+            'description': 'some_description',
+            'location': {
+                'lat': 100,
+                'lng': 100
+            }
+        }
+        new_stop = self.service.save(stop)
+        assert_equal(new_stop['type'], 'parada')
+
+    def test_adds_geo_json_before_save(self):
+        name = random_alpha(10)
+        description = random_alpha(30)
+        stop = {
+            'name': name,
+            'description': description,
+            'location': {
+                'lat': 100,
+                'lng': 100
+            }
+        }
+        self.service.save(stop)
+
+        stop_with_geo_json = stop.copy()
+        stop_with_geo_json['geoJSON'] = {
+            'type': 'Feature',
+            'geometry': {'type': 'Point', 'coordinates': [100, 100]},
+            'properties': {
+                'name': name,
+                'description': description
+            }
+        }
+
+        self.repo.save.assert_called_once_with(stop_with_geo_json)
 
     def test_calculates_closest_stop(self):
         stop_name = random_alpha(10)

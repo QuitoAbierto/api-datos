@@ -23,14 +23,9 @@ class TestStopRepository:
             self.repo.save(document)
             assert_equal('Invalid document provided', error.msg)
 
-    def test_adds_type_to_document(self):
-        document = {'some_key': 'some_value'}
-        new_document = self.repo.save(document)
-        assert_equal(new_document['type'], 'parada')
-
     def test_gets_every_document(self):
-        document1 = {'some_key': 'some_value'}
-        document2 = {'some_key': 'some_value'}
+        document1 = {'some_key': 'some_value', 'type': 'parada'}
+        document2 = {'some_key': 'some_value', 'type': 'parada'}
         self.repo.save(document1)
         self.repo.save(document2)
 
@@ -47,7 +42,7 @@ class TestStopRepository:
 
     def test_gets_formated_stop(self):
         value = random_alpha(10)
-        stop = {'some_key': value}
+        stop = {'some_key': value, 'type': 'parada'}
         self.repo.save(stop)
 
         stored_stop = self.repo.all()[0]

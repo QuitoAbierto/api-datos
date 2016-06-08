@@ -5,6 +5,22 @@ class StopService:
     def __init__(self, repo):
         self.repo = repo
 
+    def save(self, stop):
+        latitude = stop['location']['lat']
+        longitude = stop['location']['lng']
+        stop['type'] = 'parada'
+        stop['geoJSON'] = {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [latitude, longitude]},
+            'properties': {
+                'name': stop['name'],
+                'description': stop['description']
+            }
+        }
+        return self.repo.save(stop)
+
     def get_closest(self, lat, lng):
         stops = self.repo.all()
         stops_with_coordinates = self.__get_coordinates(stops)

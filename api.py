@@ -10,12 +10,15 @@ CORS(app)
 db = get_db.run()
 
 @app.route('/api/parada', methods=['POST'])
-def insert_one():
+def save_stop():
+    stop = json.loads(request.data.decode("utf-8"))
+    if not stop_valid(stop):
+        return '{"error": "JSON mal formateado"}', 400
     repo = StopRepository(db)
-    doc = json.loads(request.data.decode("utf-8"))
-    new_doc = repo.save(doc)
-    location = '/api/parada/{}'.format(new_doc['_id'])
-    return json.dumps(new_doc), 201, {'location': location}
+    service = StopService(repo)
+    new_stop = service.save(stop)
+    location = '/api/parada/{}'.format(new_stop['_id'])
+    return json.dumps(new_stop), 201, {'location': location}
 
 @app.route('/api/parada', methods=['GET'])
 def return_all():
@@ -33,6 +36,9 @@ def closest_stop():
     stop = stop_service.get_closest(lat, lng)
     return json.dumps({'stop': stop})
 
+def stop_valid(stop):
+    required_keys = ['name', 'description', 'location']
+    return all([stop.get(key) for key in required_keys])
 
 if __name__ == '__main__':
     app.debug = True

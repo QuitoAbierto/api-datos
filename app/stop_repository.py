@@ -10,7 +10,6 @@ class StopRepository:
     def save(self, document):
         if not document:
             raise InvalidDocumentError('Invalid document provided')
-        document['type'] = 'parada'
         self.db.save(document)
         return document
 
