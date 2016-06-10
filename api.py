@@ -2,7 +2,9 @@ from flask import Flask, request
 import json
 from app.scripts import get_db
 from app.stop_repository import StopRepository
+from app.route_repository import RouteRepository
 from app.stop_service import StopService
+from app.route_service import RouteService
 from flask.ext.cors import CORS
 
 app = Flask(__name__)
@@ -35,6 +37,23 @@ def closest_stop():
         current_location['location']['lng'])
     stop = stop_service.get_closest(lat, lng)
     return json.dumps({'stop': stop})
+
+@app.route('/api/route', methods=['POST'])
+def save_route_node():
+    route_node = json.loads(request.data.decode("utf-8"))
+    repo = RouteRepository(db)
+    route_service = RouteService(repo)
+    route_service.save(route_node)
+    return 'success', 201
+
+@app.route('/api/route/<route_name>', methods=['GET'])
+def get_route_by_name(route_name):
+    repo = RouteRepository(db)
+    route_service = RouteService(repo)
+    route = route_service.by_name(route_name)
+    if not route:
+        return json.dumps({'error': 'No such route.'}), 404
+    return json.dumps({'route' :route}), 200
 
 def stop_valid(stop):
     required_keys = ['name', 'description', 'location']

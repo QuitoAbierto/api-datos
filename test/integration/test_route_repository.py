@@ -26,3 +26,18 @@ class TestRouteRepository:
         routes = self.repo.all()
 
         assert_equal(2, len(routes))
+
+    def test_returns_nodes_by_route_name(self):
+        node1 = {'name': 'route1', 'type': 'route'}
+        node2 = {'name': 'route1', 'type': 'route'}
+        node3 = {'name': 'route1', 'type': 'route'}
+        node4 = {'name': 'route2', 'type': 'route'}
+
+        self.repo.save(node1)
+        self.repo.save(node2)
+        self.repo.save(node3)
+        self.repo.save(node4)
+
+        nodes = self.repo.by_name('route1')
+
+        assert_equal(3, len(nodes))

@@ -1,4 +1,5 @@
-from api import app
+from api import app, db
+from app.route_repository import RouteRepository
 from test.helpers import *
 import json
 from random import randint
@@ -8,6 +9,7 @@ class TestApi:
 
     def setup(self):
         self.test_app = app.test_client()
+        self.repo = RouteRepository(db)
         delete_db()
 
     def test_saves_new_stop(self):
@@ -76,6 +78,44 @@ class TestApi:
         assert_equal(response.status_code, 200)
         assert_equal('stop2', closest_stop['name'])
 
+    def test_saves_new_route_node(self):
+        route_name = random_alpha(10)
+        node = {'name': route_name, 'location': {
+            'lng': -0.1842817466581577,
+            'lat': -78.48255157470703
+        }}
+
+        response = self.test_app.post('/api/route', data=json.dumps(node))
+
+        assert_equal(201, response.status_code)
+
+        saved_route = self.repo.all()[0]
+
+        assert_equal('route', saved_route['type'])
+        assert_equal(route_name, saved_route['name'])
+
+    def test_get_route_with_nodes(self):
+        self.__save_route_node(name='route1', location={'lat': 1, 'lng': 1})
+        self.__save_route_node(name='route1', location={'lat': 2, 'lng': 2})
+        self.__save_route_node(name='route1', location={'lat': 3, 'lng': 3})
+        self.__save_route_node(name='route2', location={'lat': 3, 'lng': 3})
+        response = self.test_app.get('/api/route/route1')
+
+        assert_equal(200, response.status_code)
+
+        response_body = json.loads(response.data.decode("utf-8"))
+        saved_route = response_body['route']
+        assert_equal(3, len(saved_route['locations']))
+
+    def test_returns_404_if_no_route_is_found(self):
+        response = self.test_app.get('/api/route/route1')
+
+        assert_equal(404, response.status_code)
+
+        response_body = json.loads(response.data.decode("utf-8"))
+        error = response_body['error']
+        assert_equal('No such route.', error)
+
     def __save_stop(self, **kwargs):
         default_location = {'lat': 100, 'lng': 100}
         stop = {
@@ -84,3 +124,12 @@ class TestApi:
             'location': kwargs.get('location') or default_location
         }
         return self.test_app.post('/api/parada', data=json.dumps(stop))
+
+    def __save_route_node(self, **kwargs):
+        default_location = {'lat': 100, 'lng': 100}
+        route_node = {
+            'name': kwargs.get('name') or 'default_name',
+            'description': kwargs.get('description') or 'default_description',
+            'location': kwargs.get('location') or default_location
+        }
+        return self.test_app.post('/api/route', data=json.dumps(route_node))

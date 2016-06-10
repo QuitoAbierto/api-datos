@@ -42,5 +42,5 @@ class StopService:
         return [add_point(stop) for stop in stops]
 
     def __calculate_distances(self, stops, current_location):
-        return [(stop, distance.distance(stop['point'], current_location).km)\
+        return [(stop, distance.distance(stop['point'], current_location).km)
             for stop in stops]
