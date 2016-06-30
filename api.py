@@ -38,7 +38,7 @@ def closest_stop():
     stop = stop_service.get_closest(lat, lng)
     return json.dumps({'stop': stop})
 
-@app.route('/api/route', methods=['POST'])
+@app.route('/api/ruta', methods=['POST'])
 def save_route_node():
     route_node = json.loads(request.data.decode("utf-8"))
     repo = RouteRepository(db)
@@ -46,7 +46,7 @@ def save_route_node():
     route_service.save(route_node)
     return 'success', 201
 
-@app.route('/api/route/<route_name>', methods=['GET'])
+@app.route('/api/ruta/<route_name>', methods=['GET'])
 def get_route_by_name(route_name):
     repo = RouteRepository(db)
     route_service = RouteService(repo)
