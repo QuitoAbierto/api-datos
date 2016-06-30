@@ -46,6 +46,13 @@ def save_route_node():
     route_service.save(route_node)
     return 'success', 201
 
+@app.route('/api/ruta', methods=['GET'])
+def get_all_routes():
+    repo = RouteRepository(db)
+    route_service = RouteService(repo)
+    routes = route_service.all()
+    return json.dumps(routes), 200
+
 @app.route('/api/ruta/<route_name>', methods=['GET'])
 def get_route_by_name(route_name):
     repo = RouteRepository(db)

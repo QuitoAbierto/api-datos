@@ -116,6 +116,19 @@ class TestApi:
         error = response_body['error']
         assert_equal('No such route.', error)
 
+    def test_returns_all_routes(self):
+        self.__save_route_node(name='route1', location={'lat': 1, 'lng': 1})
+        self.__save_route_node(name='route2', location={'lat': 3, 'lng': 3})
+        response = self.test_app.get('/api/ruta')
+
+        response_body = json.loads(response.data.decode("utf-8"))
+        expected_routes = [
+            {'name': 'route1', 'locations': [[1, 1]]},
+            {'name': 'route2', 'locations': [[3, 3]]}
+        ]
+        assert_equal(200, response.status_code)
+        assert_equal(expected_routes, response_body)
+
     def __save_stop(self, **kwargs):
         default_location = {'lat': 100, 'lng': 100}
         stop = {

@@ -15,8 +15,7 @@ class RouteService:
         for key, group in groupby(nodes, lambda x: x['name']):
             routes.append({
                 'name': key,
-                'locations': [[node['location']['lng'], node['location']['lat']]
-                    for node in group]})
+                'locations': self.__get_locations(group)})
         return routes
 
     def by_name(self, route_name):
@@ -25,7 +24,11 @@ class RouteService:
             return None
         route = {
             'name': route_nodes[0]['name'],
-            'locations': [node['location'] for node in route_nodes]
+            'locations': self.__get_locations(route_nodes)
         }
 
         return route
+
+    def __get_locations(self, route_nodes):
+        return [[node['location']['lng'], node['location']['lat']]
+            for node in route_nodes]
