@@ -9,3 +9,4 @@ Werkzeug==0.11.8
 invoke==0.12.2
 CouchDB==1.0.1
 geopy==1.11.0
+sphinx==1.4.4
