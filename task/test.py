@@ -21,3 +21,8 @@ def unit():
 def all():
     task_message('Running all tests')
     pass
+
+@task
+def coverage():
+    task_message('Running tests with coverage. See cover directory for details.')
+    run('nosetests --with-coverage --cover-package=app --cover-html test/')

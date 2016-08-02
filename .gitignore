@@ -3,3 +3,5 @@ env-api
 .vagrant
 tmp
 test_reports
+.coverage
+cover
