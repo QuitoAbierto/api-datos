@@ -2,6 +2,7 @@
 env-api
 .vagrant
 tmp
-test_reports
+test_reports/*.html
+test_reports/*.xml
 .coverage
 cover
